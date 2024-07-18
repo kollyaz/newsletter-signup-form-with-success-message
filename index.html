@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      /* ## Colors
+
+### Primary
+
+- Tomato: hsl(4, 100%, 67%)
+
+### Neutral
+
+- Dark Slate Grey: hsl(234, 29%, 20%)
+- Charcoal Grey: hsl(235, 18%, 26%)
+- Grey: hsl(231, 7%, 60%)
+- White: hsl(0, 0%, 100%)
+
+## Typography
+
+### Body Copy
+
+- Font size (paragraph): 16px
+
+### Font
+
+- Family: [Roboto](https://fonts.google.com/specimen/Roboto)
+- Weights: 400, 700 */
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-family: Roboto, sans-serif;
+        font-size: 1.6rem;
+        background-color: hsl(234, 29%, 20%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: hsl(234, 29%, 20%);
+      }
+      .illus-mobile {
+        display: none;
+      }
+      .illus-desktop {
+        justify-self: end;
+      }
+      .state {
+        margin-top: 10rem;
+        background-color: hsl(0, 0%, 100%);
+        padding: 3.2rem;
+        border-radius: 3.2rem;
+        display: flex;
+      }
+      .start-state {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+        gap: 4.8rem;
+
+        line-height: 2;
+      }
+      h1 {
+        font-size: 4.8rem;
+      }
+      h1,
+      p,
+      ul,
+      .email-box,
+      button {
+        margin: 0;
+      }
+      .start-text {
+        margin: auto;
+        width: auto;
+        display: flex;
+        /* align-items: center; */
+        /* justify-content: center; */
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .join {
+        line-height: 1.5;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        gap: 1.2rem;
+        padding: 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+      }
+      li p {
+        margin: 0;
+      }
+      .email-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* gap: 1.2rem; */
+      }
+      .email {
+        margin-bottom: 0;
+        font-weight: 700;
+        font-size: 1.4rem;
+      }
+      input {
+        padding: 2rem;
+        border-radius: 1.2rem;
+        border: solid 1px hsl(231, 7%, 60%);
+        /* cursor: pointer; */
+      }
+      input::placeholder {
+        font-size: 1.6rem;
+      }
+      .email1,
+      .email2 {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .email2-cont {
+        position: relative;
+      }
+      .email2-cont p {
+        position: absolute;
+        color: hsl(4, 100%, 67%);
+        font-size: 1.2rem;
+        font-weight: 700;
+        top: -2.4rem;
+        right: 0;
+      }
+      .email2 {
+        border-color: hsl(4, 100%, 67%);
+      }
+      .email2::placeholder {
+        color: hsl(4, 100%, 67%);
+      }
+      .email2:placeholder-shown {
+        background-color: hsl(4, 100%, 96%);
+      }
+      .email2::after {
+        content: "";
+        width: 10rem;
+        color: aquamarine;
+      }
+      button {
+        cursor: pointer;
+        margin-top: 1.2rem;
+        background-color: hsl(234, 29%, 20%);
+        color: hsl(0, 0%, 100%);
+        border: none;
+        padding: 2rem;
+        border-radius: 1.2rem;
+        font-size: 1.6rem;
+      }
+      button:hover {
+        background: linear-gradient(
+          to right,
+          hsl(329, 73%, 60%) 10%,
+          hsl(4, 100%, 67%) 100%
+        );
+      }
+      .success-state {
+        width: 32%;
+        line-height: 1.5;
+        flex-direction: column;
+        /* align-items: center; */
+        justify-content: center;
+        gap: 2.4rem;
+        padding: 4.8rem;
+      }
+      .success-state img {
+        width: 6.4rem;
+        background: radial-gradient(
+          ellipse,
+          hsl(329, 73%, 60%),
+          hsl(4, 100%, 67%)
+        );
+        border: none;
+        border-radius: 50%;
+      }
+      .success-state h1 {
+        line-height: 1;
+      }
+      .user-email {
+        font-weight: bold;
+      }
+
+      .hidden {
+        display: none;
+      }
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        bottom: -20%;
+        color: hsl(0, 0%, 100%);
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      /**********************************/
+      /**********MEDIA QUERY************/
+      /********************************/
+      /* BELOW 970PX */
+      @media (max-width: 61em) {
+        html {
+          font-size: 55%;
+        }
+      }
+      /* BELOW 840PX */
+      @media (max-width: 53em) {
+        html {
+          font-size: 50%;
+        }
+        /* .start-state {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        } */
+        .start-text {
+          width: auto;
+        }
+        .illus-desktop {
+          width: 100%;
+        }
+      }
+      /* BELOW 790PX */
+      @media (max-width: 50em) {
+        html {
+          font-size: 50%;
+        }
+      }
+      /* BELOW 650PX */
+      @media (max-width: 41em) {
+        html {
+          font-size: 46%;
+        }
+      }
+      /* BELOW 600PX */
+      @media (max-width: 38em) {
+        html {
+          font-size: 59%;
+        }
+        body {
+          display: block;
+          margin: 0;
+          align-items: stretch;
+          justify-content: stretch;
+          background-color: hsl(0, 0%, 100%);
+        }
+        h1 {
+          line-height: 1;
+        }
+        .start-state {
+          grid-template-columns: 1fr;
+          padding: 0;
+          overflow: hidden;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          margin-top: 0;
+          /* display: none; */
+        }
+        .success-state {
+          /* display: block; */
+          width: auto;
+          padding: 2.4rem;
+        }
+        .dismiss {
+          width: 90%;
+          position: absolute;
+          margin-bottom: 10rem;
+          transform: translate(-50%, -50%);
+          left: 50%;
+          bottom: -58rem;
+        }
+
+        .illus-desktop {
+          display: none;
+        }
+        .illus-mobile {
+          display: block;
+          width: 100%;
+        }
+        .start-text {
+          padding: 0 3.2rem 3.2rem 3.2rem;
+          gap: 2.4rem;
+        }
+        .attribution {
+          color: hsl(234, 29%, 20%);
+          bottom: -10%;
+        }
+      }
+      /* BELOW 375PX */
+      @media (max-width: 24em) {
+        html {
+          font-size: 45%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sign-up form start -->
+    <div class="state start-state">
+      <img
+        class="illus-mobile"
+        src="assets/images/illustration-sign-up-mobile.svg"
+        alt=""
+      />
+      <div class="start-text">
+        <h1>Stay updated!</h1>
+        <p class="join">
+          Join 60,000+ product managers receiving monthly updates on:
+        </p>
+        <ul>
+          <li>
+            <img src="assets/images/icon-list.svg" alt="" />
+            <p>Product discovery and building what matters</p>
+          </li>
+          <li>
+            <img src="assets/images/icon-list.svg" alt="" />
+            <p>Measuring to ensure updates are a success</p>
+          </li>
+          <li>
+            <img src="assets/images/icon-list.svg" alt="" />
+            <p>And much more!</p>
+          </li>
+        </ul>
+        <div class="email-box">
+          <p class="email">Email address</p>
+          <div class="email1-cont">
+            <input
+              name="email"
+              class="email1"
+              id="email1"
+              type="email"
+              placeholder="email@company.com"
+              pattern=".+@foo.com"
+              required
+            />
+          </div>
+          <div class="email2-cont hidden">
+            <p>Valid email required</p>
+            <input
+              name="email"
+              class="email2"
+              id="email2"
+              type="email"
+              placeholder="email@company.com"
+              pattern=".+@foo.com"
+              required
+            />
+          </div>
+        </div>
+        <button class="subscribe">Subscribe to monthly newsletter</button>
+      </div>
+      <img
+        class="illus-desktop"
+        src="assets/images/illustration-sign-up-desktop.svg"
+        alt=""
+      />
+    </div>
+
+    <!-- Sign-up form end -->
+
+    <!-- Success message start -->
+    <div class="state success-state hidden">
+      <img src="assets/images/icon-list.svg" alt="" />
+      <h1>Thanks for subscribing!</h1>
+      <p>
+        A confirmation email has been sent to
+        <span class="user-email">ash@loremcompany.com</span>. Please open it and
+        click the button inside to confirm your subscription.
+      </p>
+      <button class="dismiss">Dismiss message</button>
+    </div>
+
+    <!-- Success message end -->
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Kolade</a>.
+    </div>
+    <script>
+      const subscribeBtn = document.querySelector(".subscribe");
+      const emailInput1 = document.querySelector(".email1");
+      const emailInput2 = document.querySelector(".email2");
+      const userEmail = document.querySelector(".user-email");
+      const dismissBtn = document.querySelector(".dismiss");
+
+      const changeBackgroundColor = function () {
+        const mediaQuery = window.matchMedia("(max-width: 600px)");
+        if (mediaQuery.matches) {
+          document.body.style.backgroundColor = "hsl(0, 0%, 100%)";
+          // document.querySelector(".attribution").style.color =
+          //   "hsl(234, 29%, 20%)";
+          document.querySelector(".attribution").style.bottom = "-60rem";
+        }
+      };
+      const successState = function () {
+        // document.querySelector(".start-state").classList.add("hidden");
+        document.querySelector(".start-state").classList.add("hidden");
+        document.querySelector(".success-state").classList.remove("hidden");
+        userEmail.textContent = emailInput1.value || emailInput2.value;
+        changeBackgroundColor();
+      };
+      const errorState = function () {
+        document.querySelector(".email1-cont").classList.add("hidden");
+        document.querySelector(".email2-cont").classList.remove("hidden");
+      };
+      const validateEmail = function (email) {
+        // Regular expression for validating email format
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      };
+
+      subscribeBtn.addEventListener("click", function () {
+        if (!validateEmail(emailInput1.value)) {
+          errorState();
+          if (validateEmail(emailInput2.value)) {
+            successState();
+            userEmail.textContent = emailInput2.value;
+          }
+        } else {
+          successState();
+        }
+      });
+
+      // subscribeBtn.addEventListener("click", function () {
+      //   if (emailInput1.value === "") {
+      //     errorState();
+      //     if (emailInput2.value !== "") {
+      //       successState();
+      //     }
+      //   } else {
+      //     successState();
+      //   }
+      // });
+      dismissBtn.addEventListener("click", function () {
+        document.querySelector(".start-state").classList.remove("hidden");
+        document.querySelector(".success-state").classList.add("hidden");
+        document.querySelector(".email1-cont").classList.remove("hidden");
+        document.querySelector(".email2-cont").classList.add("hidden");
+        // document.body.style.backgroundColor = "hsl(234, 29%, 20%)";
+        document.querySelector(".attribution").style.bottom = "-10%";
+        emailInput1.value = "";
+        emailInput2.value = "";
+      });
+    </script>
+  </body>
+</html>
